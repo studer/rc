@@ -1,0 +1,56 @@
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+setopt appendhistory autocd correctall nolistbeep print_exit_value
+setopt autopushd pushdminus pushdsilent pushdtohome
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt PUSHD_IGNORE_DUPS
+setopt braceccl
+setopt SHARE_HISTORY
+
+export EDITOR=nano
+export GROFF_ENCODING=utf8
+export PIP_USE_MIRRORS=1
+
+export RPROMPT='%{[35m%}%w - %T%{[36m%}'
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'm:{a-zA-Z}={A-Za-z} r:|[._-]=** r:|=**' 'm:{a-zA-Z}={A-Za-z}' 'm:{a-zA-Z}={A-Za-z}'
+zstyle :compinstall filename '~/.zshrc'
+
+autoload -Uz promptinit compinit zmv zed colors
+colors
+promptinit
+prompt gentoo
+compinit
+# End of lines added by compinstall
+
+#export RPROMPT='%{$fg[magenta]%}%w - %T%{$reset_color%}'
+
+alias pytohn='python'
+
+bindkey '[B' history-search-forward
+bindkey '[A' history-search-backward
+bindkey ' ' magic-space
+
+if [ -s $HOME/.zshpwd ]; then
+ new_pwd=`cat $HOME/.zshpwd`
+ if [ -d $new_pwd ]; then
+  cd $new_pwd
+ fi
+fi
+
+if [ -s /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+if [ -s /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi

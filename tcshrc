@@ -1,0 +1,8 @@
+set complete = enhance
+set correct = all
+set autocorrect
+bindkey "^I" complete-word-fwd
+bindkey "^[[Z" complete-word-back
+bindkey -k down history-search-forward
+bindkey -k up history-search-backward
+set implicitcd
