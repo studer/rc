@@ -16,7 +16,6 @@ setopt SHARE_HISTORY
 
 export EDITOR=nano
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=/usr/local/texlive/2011basic/bin/universal-darwin:$PATH
 export LC_CTYPE=fr_CH.UTF-8
 export GROFF_ENCODING=utf8
 export PYTHONSTARTUP=/etc/pyrc
@@ -43,16 +42,12 @@ compinit
 #export PROMPT='[%m:%{$fg[green]%}%~%{$reset_color%}]
 # %n %# '
 
-if [ -d /usr/local/lib/zpython ]; then
- module_path=($module_path /usr/local/lib/zpython)
- zmodload zsh/zpython
-fi
-
 if [ -d /usr/local/share/zsh-completions ]; then
  fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 
 alias pytohn='python'
+alias l='ls -al'
 
 bindkey '[B' history-search-forward
 bindkey '[A' history-search-backward
@@ -68,3 +63,15 @@ fi
 if [ -s /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+unalias run-help
+HELPDIR=/usr/local/share/zsh/helpfiles
+
+eval $(ssh-agent)
+
+function cleanup {
+    echo "Killing SSH-Agent"
+    kill -9 $SSH_AGENT_PID
+}
+
+trap cleanup EXIT

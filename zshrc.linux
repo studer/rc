@@ -39,21 +39,12 @@ compinit
 # %n %# '
 
 alias pytohn='python'
+alias l='ls -al'
 
 bindkey '[B' history-search-forward
 bindkey '[A' history-search-backward
 bindkey ' ' magic-space
 
-if [ -s $HOME/.zshpwd ]; then
- new_pwd=`cat $HOME/.zshpwd`
- if [ -d $new_pwd ]; then
-  cd $new_pwd
- fi
-fi
-
-if [ -s /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
- source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
 if [ -s /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
